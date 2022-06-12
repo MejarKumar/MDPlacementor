@@ -8,7 +8,7 @@ const internship = require("./routes/internship");
 const authrouter = require("./routes/authroute");
 const Comment = require("./model/comment");
 const app = express();
-const client =require("./routes/client")
+const client = require("./routes/client")
 const path = require("path");
 const { join } = require('path')
 const connectDB = require("./config/db");
@@ -22,7 +22,7 @@ app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 const publicFolder = join(__dirname, 'client', 'build')
 
-app.use('/', express.static(publicFolder)) 
+app.use('/', express.static(publicFolder))
 app.get("/comments", (req, res) => {
   Comment.find({}, (err, cmt) => {
     if (err) {
@@ -89,9 +89,9 @@ app.post("/send_mail", async (req, res) => {
   res.status(200).send("Send successfully..")
 });
 
-app.use("/api",internship);
-app.use("/api",placement);
-app.use("/api",authrouter);
+app.use("/api", internship);
+app.use("/api", placement);
+app.use("/api", authrouter);
 app.use(cookieParser);
 
 //cookies
@@ -105,7 +105,7 @@ app.get("/api/read-cookies", (req, res) => {
   res.json(res.cookie);
 });
 
-if ( process.env.NODE_ENV == "production"){
+if (process.env.NODE_ENV == "production") {
 
   app.use(client);
 }

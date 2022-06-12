@@ -149,7 +149,7 @@ function ContactForm() {
           </div>
 
           <div className={styles.submit_btn}>
-            <button type="submit" onClick={submitHandler}>
+            <button className={styles.submit_btn} type="submit" onClick={submitHandler}>
               Send Message
             </button>
           </div>
