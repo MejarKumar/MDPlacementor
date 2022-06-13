@@ -28,11 +28,11 @@ background: linear-gradient(
 );
 color: #fff;
 width: 100%;
-height:39vh;
+height:fit-content;
 padding: 1.3rem;
 text-align:center;
 @media screen and (max-width: 600px) {
-  padding: 0.3rem;
+  padding: 0.8rem;
   }`;
 const AboutSection = styled.div`
   background: linear-gradient(
@@ -88,7 +88,14 @@ const Data = () => {
   const [data, setData] = useState({
     selection_process: {
       step1: '1',
-      step2: '1'
+      step2: '1',
+      step3: '1'
+    },
+    interview_round: {
+      round1: '1',
+      round2: '1',
+      round3: '1',
+      round4: '1'
     },
     influence_of: {
       projects: '1',
@@ -105,7 +112,7 @@ const Data = () => {
     axios
       .get(`/api/${params.type}/${params.id}`)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data.interview_round.round1);
         setData(response.data);
       })
       .catch((e) => {
@@ -115,12 +122,11 @@ const Data = () => {
   }, [setData]);
 
   if (params.type !== "placement" && params.type !== "internship") {
-    return <div style={{margin:"2rem auto" ,textAlign:"center",fontSize:"2.5rem",color:"rgba(138, 94, 191, 1) "}}>Not Found 😔</div>;
+    return <div style={{ margin: "2rem auto", textAlign: "center", fontSize: "2.5rem", color: "rgba(138, 94, 191, 1) " }}>Not Found 😔</div>;
   }
 
-  if(!data)
-  {
-    return<div style={{margin:"2rem auto" ,textAlign:"center",fontSize:"2.5rem",color:"rgba(138, 94, 191, 1) "}}>Not Found 😔</div>
+  if (!data) {
+    return <div style={{ margin: "2rem auto", textAlign: "center", fontSize: "2.5rem", color: "rgba(138, 94, 191, 1) " }}>Not Found 😔</div>
   }
 
   return (
@@ -133,102 +139,158 @@ const Data = () => {
         {console.log(data)}
         <img src={data.logo} className={styles.logo_small} />
 
-        <Strip className={styles.data_container}>
+        <Strip className={styles.data_container} >
 
-          <div className={styles.frosty}>
-            <ul style={{ listStyleType: "none" }}>
-              <li><b>Profile  </b> Software Engineer</li>
-              <li><b>Branches Eligible : </b> {data.eligible_branch}</li>
-              <li><b>CGPA Criteria:  </b> {data.CGPA} CGPA</li>
+          <div className={styles.frosty} >
+            <ul className={styles.info_section}>
+              <li style={{ paddingTop: "0.6rem" }}>Profile :  <span style={{
+                fontFamily: 'Ubuntu',
+                fontWeight: "100"
+              }}> {data.role}</span></li>
+              <li style={{ paddingTop: "0.6rem" }}>Branches Eligible :<span style={{
+                fontFamily: 'Ubuntu',
+                fontWeight: "100"
+              }}> {data.eligible_branch} </span></li>
+              <li style={{ paddingTop: "0.6rem" }}>CGPA Criteria:   <span style={{
+                fontFamily: 'Ubuntu',
+                fontWeight: "100"
+              }}>{data.CGPA} CGPA</span></li>
+              <li style={{ paddingTop: "0.6rem" }}>Year:   <span style={{
+                fontFamily: 'Ubuntu',
+                fontWeight: "100"
+              }}>{data.year} </span></li>
             </ul>
           </div>
         </Strip>
 
       </div>
-    <Container style={{width:"auto",display:"flex",flexDirection:"column",margin:"auto"}}>
-      <Row className={styles.temp}>
-        <div className="col-lg-5" style={{
-          border: "solid 2px black",
-          padding: "10px",
-          borderRadius: '7px',
-          margin: '12px'
-        }}>
-          <h1 className={styles.data_container}> Selection Process</h1>
-          <Accordion defaultActiveKey="0">
-            <Accordion.Item eventKey="1">
-              <Accordion.Header>Round 1</Accordion.Header>
-              <Accordion.Body>
-                {data.selection_process.step1}
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="2">
-              <Accordion.Header>Interview Round</Accordion.Header>
-              <Accordion.Body>
-                {data.selection_process.step2}
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
+      <Container style={{ width: "auto", display: "flex", flexDirection: "column", margin: "auto" }}>
+        <Row className={styles.temp}>
+          <div className="col-lg-5" style={{
+            border: "solid 2px black",
+            padding: "10px",
+            borderRadius: '7px',
+            margin: '12px'
+          }}>
+            <h1 className={styles.heading}> Selection Process</h1>
+            <Accordion defaultActiveKey="0">
+              <Accordion.Item eventKey="1">
+                <Accordion.Header>Round 1</Accordion.Header>
+                <Accordion.Body>
+                  {data.selection_process.step1}
+                </Accordion.Body>
+              </Accordion.Item>
+              <Accordion.Item eventKey="2">
+                <Accordion.Header>Group discussion Round</Accordion.Header>
+                <Accordion.Body>
+                  {data.selection_process.step2}
+                </Accordion.Body>
+              </Accordion.Item>
+              <Accordion.Item eventKey="3">
+                <Accordion.Header>Interview Round</Accordion.Header>
+                <Accordion.Body>
+                  {data.selection_process.step3}
 
-        </div>
-        <div className="col-lg-5" style={{
-          border: "solid 2px black",
-          padding: "10px",
-          borderRadius: '7px',
-          margin: '12px'
-        }}>
-          <h1 className={styles.data_container}> Influence Of</h1>
-          <Accordion defaultActiveKey="0">
-            <Accordion.Item eventKey="1">
-              <Accordion.Header>Projects/Previous Internships</Accordion.Header>
-              <Accordion.Body>
-                {data.influence_of.projects}
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="2">
-              <Accordion.Header>PORs</Accordion.Header>
-              <Accordion.Body>
-                {data.influence_of.PORs};
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
-        </div>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
 
-      </Row>
 
-      <Row className={styles.temp}>
-        <div className="col-lg-5" style={{
-          border: "solid 2px black",
-          padding: "10px",
-          borderRadius: '7px',
-          margin: '12px'
-        }}>
-          <h1 className={styles.data_container}>Test Preparation</h1>
-          <Accordion defaultActiveKey="0">
-            <Accordion.Item eventKey="1">
-              <Accordion.Header>Test Series</Accordion.Header>
-              <Accordion.Body>
-                {data.test_series}
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
-        </div>
-        <div className="col-lg-5" style={{
-          border: "solid 2px black",
-          padding: "10px",
-          borderRadius: '7px',
-          margin: '12px'
-        }}>
-          <h1 className={styles.data_container}> Takeaways</h1>
-          <Accordion defaultActiveKey="0">
-            <Accordion.Item eventKey="1">
-              <Accordion.Header>Key Takeaways</Accordion.Header>
-              <Accordion.Body>
-                {data.takeaways}
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
-        </div>
-      </Row>
+
+            <h2 className={styles.heading} style={{ paddingTop: "1rem" }}> Interview Rounds</h2>
+            <Accordion defaultActiveKey="0">
+              {data.interview_round.round1 && <Accordion.Item eventKey="1">
+                <Accordion.Header>Round 1</Accordion.Header>
+                <Accordion.Body>
+                  {data.interview_round.round1}
+                </Accordion.Body>
+              </Accordion.Item>}
+              {data.interview_round.round2 &&
+                <Accordion.Item eventKey="2">
+                  <Accordion.Header>Round 2</Accordion.Header>
+                  <Accordion.Body>
+                    {data.interview_round.round2}
+                  </Accordion.Body>
+                </Accordion.Item>}
+              {data.interview_round.round3 &&
+                <Accordion.Item eventKey="3">
+                  <Accordion.Header>Round 3</Accordion.Header>
+                  <Accordion.Body>
+                    {data.interview_round.round3}
+
+                  </Accordion.Body>
+                </Accordion.Item>}
+              {data.interview_round.round4 &&
+                <Accordion.Item eventKey="4">
+                  <Accordion.Header>Round 4</Accordion.Header>
+                  <Accordion.Body>
+                    {data.interview_round.round4}
+
+                  </Accordion.Body>
+                </Accordion.Item>}
+            </Accordion>
+
+
+          </div>
+          <div className="col-lg-5" style={{
+            border: "solid 2px black",
+            padding: "10px",
+            borderRadius: '7px',
+            margin: '12px'
+          }}>
+            <h1 className={styles.heading}> Influence Of</h1>
+            <Accordion defaultActiveKey="0">
+              <Accordion.Item eventKey="1">
+                <Accordion.Header>Projects/Previous Internships</Accordion.Header>
+                <Accordion.Body>
+                  {data.influence_of.projects}
+                </Accordion.Body>
+              </Accordion.Item>
+              <Accordion.Item eventKey="2">
+                <Accordion.Header>PORs</Accordion.Header>
+                <Accordion.Body>
+                  {data.influence_of.PORs};
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          </div>
+
+        </Row>
+
+        <Row className={styles.temp}>
+          <div className="col-lg-5" style={{
+            border: "solid 2px black",
+            padding: "10px",
+            borderRadius: '7px',
+            margin: '12px'
+          }}>
+            <h1 className={styles.heading}>Test Preparation</h1>
+            <Accordion defaultActiveKey="0">
+              <Accordion.Item eventKey="1">
+                <Accordion.Header>Test Series</Accordion.Header>
+                <Accordion.Body>
+                  {data.test_series}
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          </div>
+          <div className="col-lg-5" style={{
+            border: "solid 2px black",
+            padding: "10px",
+            borderRadius: '7px',
+            margin: '12px'
+          }}>
+            <h1 className={styles.heading}> Takeaways</h1>
+            <Accordion defaultActiveKey="0">
+              <Accordion.Item eventKey="1">
+                <Accordion.Header>Key Takeaways</Accordion.Header>
+                <Accordion.Body>
+                  {data.takeaways}
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          </div>
+        </Row>
       </Container>
     </>
   );

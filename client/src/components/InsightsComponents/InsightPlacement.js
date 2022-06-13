@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { useState } from "react";
 
+
 export default function InsightPlacement() {
   const [query, setQuery] = useState("");
 
@@ -25,7 +26,7 @@ export default function InsightPlacement() {
 
     &:hover {
       color: ${(props) =>
-        props.activeColor ? "white" : "rgba(138, 94, 191, 1)"};
+      props.activeColor ? "white" : "rgba(138, 94, 191, 1)"};
     }
   `;
   const Div = styled.div`

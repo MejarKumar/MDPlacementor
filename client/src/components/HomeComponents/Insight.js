@@ -99,7 +99,7 @@ export default function Insight() {
       duration: 2000,
     });
   }, []);
-    const navigate= useNavigate();
+  const navigate = useNavigate();
   return (
 
     <>

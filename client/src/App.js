@@ -1,5 +1,5 @@
 import Navbar from "./components/NavBar";
-import { BrowserRouter as Router, Route, Routes ,HashRouter} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, HashRouter } from "react-router-dom";
 import Insight from "./pages/Insight";
 import Stats from "./pages/Stats";
 import Home from "./pages/Home";
@@ -41,6 +41,7 @@ export default function App() {
             exact
             element={<InsightInternship />}
           />
+
 
           <Route path="/stats" exact element={<Stats />}></Route>
           <Route path="/placement_process" exact element={<Comment />}></Route>

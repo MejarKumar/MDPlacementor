@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@500&family=Ubuntu&display=swap');
+
 .comp_name{
   text-align: center;
   margin: 2rem;
@@ -33,6 +35,16 @@
   font-weight: bolder;
   text-transform: capitalize;
 }
+.main_content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: rgb(207, 203, 204);
+  font-size: 1.5rem;
+  position: relative;
+}
+
 .data_container{
   display: flex;
   flex-direction: row;
@@ -40,28 +52,51 @@
    justify-content: center;
    height: fit-content;
    color:rgba(238, 109, 152, 1);
-  }
-.main_content{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
  
-  font-size: 1.5rem;
-  position:relative;
-}
+  }
+
 .frosty{
   text-align: center;
   width: 100%;
   margin:auto;
+  height: fit-content;
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(5px);
 }
 
+.info_section {
+  list-style-type: none;
+  color: rgb(254, 253, 244);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+
+
+
+.heading{
+  font-size: 1.5rem;
+  text-align: center;
+font-family: 'Ubuntu', sans-serif;
+color: rgba(238, 109, 152, 1);
+}
 @media screen and (max-width:600px) {
   .logo_discription{
       flex-direction: column-reverse;
       text-align: center;
       
+  }
+.temp{
+  justify-content: center;
+  padding: 0.8rem;
+}
+  .data_container{
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 }

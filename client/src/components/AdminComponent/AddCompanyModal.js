@@ -5,19 +5,23 @@ import Form from "react-bootstrap/Form";
 import axios from "axios"
 export default function AddCompanyModal(props) {
   const [company_name, setCompany_name] = useState("");
-  const [selected_students,setSelected_students ] = useState("");
-  const [step1 , setStep1] = useState("");
-  const [step2 , setStep2] = useState("");
-  const [step3 , setStep3] = useState("");
+  const [selected_students, setSelected_students] = useState("");
+  const [step1, setStep1] = useState("");
+  const [step2, setStep2] = useState("");
+  const [step3, setStep3] = useState("");
   const [year, setYear] = useState("");
   const [logo, setLogo] = useState("");
-  
+  const [role, setRole] = useState("");
+
   const [eligible_branch, setEligible_branch] = useState("");
   const [CGPA, setCGPA] = useState("");
   const [takeaways, setTakeaways] = useState("");
   const [test_series, setTest_series] = useState("");
   const [technical_round, setTechnical_round] = useState("");
-  const [HR_round, setHR_round] = useState("");
+  const [round1, setRound1] = useState("");
+  const [round2, setRound2] = useState("");
+  const [round3, setRound3] = useState("");
+  const [round4, setRound4] = useState("");
   const [projects, setProjects] = useState("");
   const [PORs, setPORs] = useState("");
   const [error, setError] = useState(false);
@@ -52,6 +56,10 @@ export default function AddCompanyModal(props) {
   const handleLogo = (e) => {
     setLogo(e.target.value);
   };
+
+  const handleRole = (e) => {
+    setRole(e.target.value);
+  };
   const handleEligible_branch = (e) => {
     setEligible_branch(e.target.value);
   };
@@ -68,8 +76,17 @@ export default function AddCompanyModal(props) {
   const handleTest_series = (e) => {
     setTest_series(e.target.value);
   };
-  const handleHR_round = (e) => {
-    setHR_round(e.target.value);
+  const handleRound1 = (e) => {
+    setRound1(e.target.value);
+  };
+  const handleRound2 = (e) => {
+    setRound2(e.target.value);
+  };
+  const handleRound3 = (e) => {
+    setRound3(e.target.value);
+  };
+  const handleRound4 = (e) => {
+    setRound4(e.target.value);
   };
   const handleProjects = (e) => {
     setProjects(e.target.value);
@@ -86,13 +103,13 @@ export default function AddCompanyModal(props) {
     e.preventDefault();
     if (
       type === "" ||
-     company_name=== "" ||
+      company_name === "" ||
       selected_students === "" ||
       year === ""
     ) {
       setError(true);
     } else {
-      const item = { company_name, selected_students,step1,step2,step3,year,logo,eligible_branch,CGPA,takeaways,test_series,technical_round,HR_round,projects,PORs};
+      const item = { company_name, selected_students, step1, step2, step3, year, logo, role, eligible_branch, CGPA, takeaways, test_series, round1, round2, round3, round4, projects, PORs };
 
       const result = await axios.post(`/api/${type}/add_company`, item);
       console.log(result);
@@ -102,12 +119,16 @@ export default function AddCompanyModal(props) {
       setStep1("");
       setStep3("");
       setLogo("");
+      setRole("");
       setEligible_branch("");
       setCGPA("");
       setTakeaways("");
       setYear("");
       setTest_series("");
-      setHR_round("");
+      setRound1("");
+      setRound2("");
+      setRound3("");
+      setRound4("");
       setProjects("");
       setPORs("");
       setSubmitted(true);
@@ -168,7 +189,7 @@ export default function AddCompanyModal(props) {
                 type="text"
                 rows={1}
                 onChange={handleName}
-                value={ company_name}
+                value={company_name}
               />
               {/* ------------------Name--------------------  */}
 
@@ -185,10 +206,10 @@ export default function AddCompanyModal(props) {
               {/* ------------------Selected Students--------------------  */}
 
               {/* ------------------Description--------------------  */}
-              <Form.Label>Description</Form.Label>
+              <Form.Label>Selection Process</Form.Label>
               <br></br>
               <Form.Label>Step 1</Form.Label>
-              
+
               <Form.Control
                 onChange={handleStep1}
                 className="input"
@@ -196,7 +217,7 @@ export default function AddCompanyModal(props) {
                 type="text"
               />
               <Form.Label>Step 2</Form.Label>
-              
+
               <Form.Control
                 onChange={handleStep2}
                 className="input"
@@ -204,7 +225,7 @@ export default function AddCompanyModal(props) {
                 type="text"
               />
               <Form.Label>Step 3</Form.Label>
-              
+
               <Form.Control
                 onChange={handleStep3}
                 className="input"
@@ -228,6 +249,13 @@ export default function AddCompanyModal(props) {
                 value={logo}
                 type="text"
               />
+              <Form.Label>Profile </Form.Label>
+              <Form.Control
+                onChange={handleRole}
+                className="input"
+                value={role}
+                type="text"
+              />
               <Form.Label>Eligible Branch </Form.Label>
               <Form.Control
                 onChange={handleEligible_branch}
@@ -235,7 +263,7 @@ export default function AddCompanyModal(props) {
                 value={eligible_branch}
                 type="text"
               />
-             
+
               <Form.Label>Takeaways </Form.Label>
               <Form.Control
                 onChange={handleTakeaways}
@@ -257,11 +285,32 @@ export default function AddCompanyModal(props) {
                 value={test_series}
                 type="text"
               />
-              <Form.Label>HR Round </Form.Label>
+              <Form.Label> Interview Round 1 </Form.Label>
               <Form.Control
-                onChange={handleHR_round}
+                onChange={handleRound1}
                 className="input"
-                value={HR_round}
+                value={round1}
+                type="text"
+              />
+              <Form.Label>Interview Round 2 </Form.Label>
+              <Form.Control
+                onChange={handleRound2}
+                className="input"
+                value={round2}
+                type="text"
+              />
+              <Form.Label>Interview Round 3 </Form.Label>
+              <Form.Control
+                onChange={handleRound3}
+                className="input"
+                value={round3}
+                type="text"
+              />
+              <Form.Label> Interview Round 4 </Form.Label>
+              <Form.Control
+                onChange={handleRound4}
+                className="input"
+                value={round4}
                 type="text"
               />
               <Form.Label>Projects </Form.Label>

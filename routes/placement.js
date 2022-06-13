@@ -12,35 +12,46 @@ router.get("/placement/all_companies", (req, res) => {
     } else {
       res.header("Access-Control-Allow-Origin", "*");
       res.json(newCompany);
-      
+
     }
   });
 });
+
+// router.get("/placement/:year", (req, res) => {
+//   const company = placementCompany.find({ year: req.params.year }, (err, company) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       res.json(company);
+//     }
+//   })
+// });
 
 
 
 router.get("/placement/:company_name", (req, res) => {
 
-  const company= placementCompany.findOne({company_name:req.params.company_name}, (err, company) => {
+  const company = placementCompany.findOne({ company_name: req.params.company_name }, (err, company) => {
     if (err) {
       console.log(err);
     } else {
-     
+
       res.json(company);
     }
   });
 
 
 
- 
+
 });
 
 
 router.post("/placement/add_company", async (req, res) => {
-  const { company_name, selected_students, test_series, step3, technical_round, HR_round, projects, PORs, step1, step2, year, logo, eligible_branch, CGPA, takeaways } = req.body;
+  const { company_name, role, selected_students, test_series, step3, round1, round2, round3, round4, projects, PORs, step1, step2, year, logo, eligible_branch, CGPA, takeaways } = req.body;
   const newCompany = new placementCompany({
-   company_name: company_name,
+    company_name: company_name,
     selected_students: selected_students,
+    role: role,
     year: year,
     logo: logo,
     eligible_branch: eligible_branch,
@@ -53,8 +64,10 @@ router.post("/placement/add_company", async (req, res) => {
       step3: step3
     },
     interview_round: {
-      technical_round: technical_round,
-      HR_round: HR_round
+      round1: round1,
+      round2: round2,
+      round3: round3,
+      round4: round4,
     },
     influence_of: {
       projects: projects,
