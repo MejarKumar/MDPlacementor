@@ -81,7 +81,11 @@ export default function CompanyFetch(props) {
                     .includes(props.query.toLowerCase())
                 )
                   return val;
-              })
+              }).sort(function(a, b) {
+                if(a.company_name.toLowerCase() < b.company_name.toLowerCase()) return -1;
+                if(a.company_name.toLowerCase() > b.company_name.toLowerCase()) return 1;
+                return 0;
+               })
               .map((comp, idx) => (
                 < Card
                   onClick={() => {
@@ -89,14 +93,14 @@ export default function CompanyFetch(props) {
                   }}
                   key={idx}
                 >
-                  <h3 style={{ textTransform: "uppercase", textAlign: "center", "fontWeight": "800" }}>
+                  <h5 style={{ textTransform: "uppercase", textAlign: "center", "fontWeight": "800" }}>
                     {comp.company_name}
-                  </h3>
+                  </h5>
                   {/* <p>{comp.selected_students}</p> */}
                   {/* <p>{comp.eligible_branch}</p> */}
                   {/* <p>{comp.year}</p> */}
                   {comp.logo && (
-                    <img style={{ height: "20%" }} src={`${comp.logo}`} alt="" />
+                    <img style={{ width:"50%" }} src={`${comp.logo}`} alt="" />
                   )}
                 </Card>
               ))

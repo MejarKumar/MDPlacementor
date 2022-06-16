@@ -79,7 +79,7 @@ function ContactForm() {
             </div>
           </div>
         </div>
-        <div className={styles.second_card}>
+        {/* <div className={styles.second_card}>
           <div className={styles.contact_form}>
 
             <div className={styles.name}>
@@ -152,8 +152,8 @@ function ContactForm() {
             <button className={styles.submit} type="submit" onClick={submitHandler}>
               Send Message
             </button>
-          </div>
-        </div>
+          </div> 
+        </div>*/}
       </div>
     </div>
   );
