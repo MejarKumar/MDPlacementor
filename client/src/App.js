@@ -15,7 +15,7 @@ import Data from "./components/Data";
 export default function App() {
   return (
     <div className="App">
-      <Router >
+      
         <Navbar />
         <Routes>
           <Route path="/admin" element={<Admin />} />
@@ -49,7 +49,7 @@ export default function App() {
         </Routes>
         <Contact />
         <Footer />
-      </Router>
+     
     </div>
   );
 }
